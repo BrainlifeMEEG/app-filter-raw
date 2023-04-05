@@ -1,0 +1,16 @@
+{
+    "mne": "/network/lustre/iss02/cenir/analyse/meeg/BRAINLIFE/datasets/ds000117/derivatives/meg_derivatives/sub-01/ses-meg/meg/sub-01_ses-meg_task-facerecognition_run-01_proc-sss_meg.fif",
+    "l_freq":1,
+    "h_freq":50,
+    "picks":"",
+    "filter_length":"auto",
+    "l_trans_bandwidth":"auto",
+    "h_trans_bandwidth":"auto",
+    "method":"fir",
+    "iir_params":"",
+    "phase":"zero",
+    "fir_window":"hamming",
+    "fir_design":"firwin",
+    "skip_by_annotation":"('edge', 'bad_acq_skip')",
+    "pad":"reflect_limited"
+}
