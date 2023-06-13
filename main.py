@@ -9,6 +9,7 @@ import json
 import helper
 import matplotlib.pyplot as plt
 from mne.viz import plot_filter, plot_ideal_filter
+import re
 
 #workaround for -- _tkinter.TclError: invalid command name ".!canvas"
 import matplotlib
@@ -41,10 +42,14 @@ plt.figure()
 fig=plot_filter(f,sfreq)
 plt.savefig(os.path.join('out_figs','filter_response.png'))
 
-
-raw.filter(l_freq=config['l_freq'],
+if config['notch']:
+    config['notch'] = [int(x) for x in re.split("\\W+",config['notch'])]
+    raw.notch_filter(freqs=config['notch'], picks=config['picks'])
+     
+    
+raw.filter(picks=config['picks'], 
+           l_freq=config['l_freq'],
            h_freq=config['h_freq'],
-           picks=config['picks'], 
            filter_length=config['filter_length'],
            l_trans_bandwidth=config['l_trans_bandwidth'],
            h_trans_bandwidth=config['h_trans_bandwidth'],
