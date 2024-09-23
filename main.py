@@ -60,7 +60,7 @@ f = mne.filter.create_filter(raw_orig.get_data(),
                              fir_design = fir_design)
 '''
 plt.figure()
-fig=plot_filter(f,sfreq)
+fig = plot_filter(f,sfreq)
 plt.savefig(os.path.join('out_figs','filter_response.png'))
 
 
