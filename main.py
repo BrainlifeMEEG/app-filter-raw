@@ -43,12 +43,13 @@ raw = mne.io.read_raw_fif(fname, preload=True)
 raw_orig = raw.copy()
 sfreq = raw.info['sfreq']
 
-'''
+
 # Create filter
 f = mne.filter.create_filter(raw_orig.get_data(),
                              sfreq,
                              l_freq = l_freq,
-                             h_freq = h_freq,
+                             h_freq = h_freq )
+'''
                              filter_length = filter_length, 
                              l_trans_bandwidth = l_trans_bandwidth,
                              h_trans_bandwidth = h_trans_bandwidth,
@@ -57,11 +58,11 @@ f = mne.filter.create_filter(raw_orig.get_data(),
                              phase = phase,
                              fir_window = fir_window,
                              fir_design = fir_design)
-
+'''
 plt.figure()
 fig=plot_filter(f,sfreq)
 plt.savefig(os.path.join('out_figs','filter_response.png'))
-'''
+
 
 if config['notch']:
     config['notch'] = [int(x) for x in re.split("\\W+",config['notch'])]
