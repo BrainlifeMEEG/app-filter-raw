@@ -11,7 +11,6 @@ import matplotlib.pyplot as plt
 from mne.viz import plot_filter, plot_ideal_filter
 import re
 
-#workaround for -- _tkinter.TclError: invalid command name ".!canvas"
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -42,7 +41,6 @@ pad = config['pad']
 raw = mne.io.read_raw_fif(fname, preload=True)
 raw_orig = raw.copy()
 sfreq = raw.info['sfreq']
-
 
 # Create filter
 f = mne.filter.create_filter(raw_orig.get_data(),
