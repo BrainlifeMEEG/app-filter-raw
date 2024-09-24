@@ -16,6 +16,8 @@ Brainlife App to filter (a subset of channels in) an MEEG file.
     str: A human-readable time in units of “s” or “ms” (e.g., “10s” or “5500ms”) will be converted to that number of samples if phase="zero", or the shortest power-of-two length at least that duration for phase="zero-double".
     int: Specified length in samples. For fir_design=”firwin”, this should not be used. 
 * ` l_trans_bandwidth `:  float | str ,  Width of the transition band at the low cut-off frequency in Hz (high pass or cutoff 1 in bandpass). Can be “auto” (default) to use a multiple of l_freq:
+min(max(l_freq * 0.25, 2), l_freq) Only used for method='fir'.
+* ` h_trans_bandwidth `:  float | str ,  Width of the transition band at the low cut-off frequency in Hz (high pass or cutoff 1 in bandpass). Can be “auto” (default) to use a multiple of l_freq:
 min(max(l_freq * 0.25, 2), l_freq) Only used for method='fir'. 
 * ` n_jobs `:  int | str ,  Number of jobs to run in parallel. Can be ‘cuda’ if cupy is installed properly and method=’fir’. 
 * ` method `:  str ,  ‘fir’ will use overlap-add FIR filtering, ‘iir’ will use IIR forward-backward filtering (via filtfilt). 
@@ -32,6 +34,8 @@ Only used for method='fir'.
 
 ## Authors:
 - [Maximilien Chaumon](maximilien.chaumon@icm-institute.org)
+- [Guiomar Niso](guiomar.niso@cajal.csic.es), Instituto Cajal, CSIC
+- 
 ### Funding Acknowledgement
 brainlife.io is publicly funded and for the sustainability of the project it is helpful to Acknowledge the use of the platform. We kindly ask that you acknowledge the funding below in your code and publications. Copy and past the following lines into your repository when using this code.
 
