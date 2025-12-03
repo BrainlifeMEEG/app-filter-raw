@@ -99,7 +99,7 @@ raw.filter(picks=config['picks'],
            skip_by_annotation = skip_by_annotation,
            pad = config['pad'])
 '''        
-raw.save('out_dir/meg.fif',overwrite=True)
+raw.save('out_dir/raw.fif',overwrite=True)
 
 
 # == REPORT ==
