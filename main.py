@@ -44,17 +44,15 @@ from brainlife_utils import (
     create_product_json,
     add_info_to_product,
     add_image_to_product,
-    add_raw_info_to_product
+    add_raw_info_to_product,
+    ensure_output_dirs
 )
 
 # Setup environment
 setup_matplotlib_backend()
 config = load_config()
 
-# Ensure output directories exist
-os.makedirs('out_dir', exist_ok=True)
-os.makedirs('out_figs', exist_ok=True)
-os.makedirs('out_report', exist_ok=True)
+ensure_output_dirs('out_dir', 'out_report', 'out_figs')
 
 # == LOAD DATA ==
 fname = config['mne']
@@ -105,6 +103,11 @@ raw.filter(
     skip_by_annotation=config['skip_by_annotation'],
     pad=config['pad']
 )
+# == CREATE PSD PLOT ==
+fig = raw.compute_psd().plot(exclude='bads', show=False)
+fig.savefig(os.path.join('out_figs', 'psd.png'), dpi=100, bbox_inches='tight')
+plt.close(fig)
+
 
 # == GENERATE REPORT ==
 report = mne.Report(title='Filtering Report')
@@ -135,6 +138,11 @@ add_raw_info_to_product(product_items, raw_orig)
 # Add filtered data information
 add_info_to_product(product_items, "Filtered Data:")
 add_raw_info_to_product(product_items, raw)
+
+# Add PSD plot if it exists
+psd_image_path = os.path.join('out_figs', 'psd.png')
+if os.path.exists(psd_image_path):
+    add_image_to_product(product_items, name='Power Spectral Density (PSD)', filepath=psd_image_path)
 
 # Add filter response plot
 add_image_to_product(product_items, "Filter Response", filepath=fig_path)
