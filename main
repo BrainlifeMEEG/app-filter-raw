@@ -2,6 +2,7 @@
 #PBS -l nodes=1:ppn=4
 #PBS -l walltime=02:00:00
 #PBS -N MEEG_filter
+#SBATCH --mem=20G
 
 # PBS is a computer software that performs job-scheduling
 # Copyright (c) 2020 brainlife.io at University of Texas at Austin and Indiana U
@@ -14,11 +15,5 @@
 set -e
 set -x
 
-# Make output directories
-mkdir -p out_dir
-mkdir -p out_dir_figs
-mkdir -p out_dir_report
-
 # Run the actual python code
-# singularity exec docker://brainlife/mne:0.23dev python3 temporal_filtering.py
-singularity exec docker://brainlife/mne:1.2.1 python3 main.py
+singularity exec docker://aunnikri642/app-freesurfer-mne-source-recon python3 main.py
