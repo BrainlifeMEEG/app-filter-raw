@@ -19,9 +19,9 @@ The app generates:
 
 ### Output Files
 
-- **meg.fif**: Filtered MEG/EEG data file in MNE format
+- **raw.fif**: Filtered MEG/EEG data file in MNE format
 - **filter_response.png**: Frequency response plot of the applied filter
-- **report_filter.html**: Interactive HTML report showing filter effects with power spectral density comparisons
+- **report.html**: Interactive HTML report showing filter effects with power spectral density comparisons
 
 ## Configuration Parameters
 

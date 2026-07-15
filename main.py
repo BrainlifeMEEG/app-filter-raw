@@ -12,11 +12,11 @@ mne : str
 
 Outputs
 -------
-meg.fif : str
+raw.fif : str
     Filtered MEG/EEG data file in MNE format.
 filter_response.png : str
     PNG image showing the frequency response of the applied filter.
-report_filter.html : str
+report.html : str
     Interactive HTML report comparing original and filtered data.
 """
 
@@ -45,12 +45,14 @@ from brainlife_utils import (
     add_info_to_product,
     add_image_to_product,
     add_raw_info_to_product,
-    ensure_output_dirs
+    ensure_output_dirs,
+    require_config_keys
 )
 
 # Setup environment
 setup_matplotlib_backend()
 config = load_config()
+require_config_keys(config, ['mne'])
 
 ensure_output_dirs('out_dir', 'out_report', 'out_figs')
 
@@ -114,10 +116,10 @@ report = mne.Report(title='Filtering Report')
 report.add_figure(fig, title='Filter Response')
 report.add_raw(raw_orig, 'Original Unfiltered Data', psd=True)
 report.add_raw(raw, 'Filtered Data', psd=True)
-report.save('out_report/report_filter.html', overwrite=True)
+report.save('out_report/report.html', overwrite=True)
 
 # == SAVE FILTERED DATA ==
-raw.save('out_dir/meg.fif', overwrite=True)
+raw.save('out_dir/raw.fif', overwrite=True)
 
 # == CREATE PRODUCT.JSON ==
 product_items = []
