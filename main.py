@@ -116,7 +116,7 @@ report = mne.Report(title='Filtering Report')
 report.add_figure(fig, title='Filter Response')
 report.add_raw(raw_orig, 'Original Unfiltered Data', psd=True)
 report.add_raw(raw, 'Filtered Data', psd=True)
-report.save('out_report/report.html', overwrite=True)
+report.save('out_report/report.html', overwrite=True, verbose=False)
 
 # == SAVE FILTERED DATA ==
 raw.save('out_dir/raw.fif', overwrite=True)
