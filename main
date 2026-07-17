@@ -16,4 +16,4 @@ set -e
 set -x
 
 # Run the actual python code
-singularity exec docker://aunnikri642/app-freesurfer-mne-source-recon python3 main.py
+singularity exec docker://brainlifemeeg/mne:1.12.1 python3 main.py
