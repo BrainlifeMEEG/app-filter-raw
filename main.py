@@ -85,6 +85,7 @@ plt.savefig(fig_path)
 plt.close(fig)
 
 # == APPLY NOTCH FILTER (if specified) ==
+print("Applying bandpass/notch filter (may take a while for long recordings)...", flush=True)
 if config['notch']:
     config['notch'] = [int(x) for x in re.split("\\W+", config['notch'])]
     raw.notch_filter(freqs=config['notch'], picks=config['picks'])
@@ -112,6 +113,7 @@ plt.close(fig)
 
 
 # == GENERATE REPORT ==
+print("Generating report (PSD computation on original and filtered data)...", flush=True)
 report = mne.Report(title='Filtering Report')
 report.add_figure(fig, title='Filter Response')
 report.add_raw(raw_orig, 'Original Unfiltered Data', psd=True)
